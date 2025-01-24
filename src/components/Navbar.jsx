@@ -76,15 +76,12 @@ const Navbar = () => {
                 const projects = data.data();
                 if (projects?.data?.[pindex]) {
                     projects.data[pindex].webdata = [webdata];
-                    console.log(projects);
                     await setDoc(dataref, projects);
                 } else {
                     console.error("Invalid project structure in Firestore!");
                 }
 
-                console.log(updatedUndo);
-                console.log(undo);
-                console.log(redo);
+                
             }
             catch (err) {
                 console.error(err)
@@ -115,7 +112,6 @@ const Navbar = () => {
                 const projects = data.data();
                 if (projects?.data?.[pindex]) {
                     projects.data[pindex].webdata = [webdata];
-                    console.log(projects);
                     await setDoc(dataref, projects);
                 } else {
                     console.error("Invalid project structure in Firestore!");
@@ -150,13 +146,12 @@ const Navbar = () => {
             <div className='flex gap-3 text-xl'>
                 {
                     devices.map((item, index) => (
-                        <>
+                        <div key={index}>
                             {< item.icon className={`${item.name === widthmodename ? 'text-blue-600' : 'text-black-500'}`} onClick={() => {
                                 setwidth(item.value)
                                 setwidthmodename(item.name)
-                                console.log(width)
                             }} />}
-                        </>
+                        </div>
                     ))
                 }
             </div>

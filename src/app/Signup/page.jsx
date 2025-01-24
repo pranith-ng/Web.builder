@@ -30,6 +30,7 @@ const SignUpPage = () => {
     if(username !== "" & username.includes("@") & password === confirmpassword ){
      const usercredentials =  await createUserWithEmailAndPassword(auth, username, password)
      const user = usercredentials.user
+     sessionStorage.clear()
      setusername("")
      setpassword("")
      setconfirmpassword("")

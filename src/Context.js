@@ -1,5 +1,5 @@
 "use client"
-import { Component, React, useState } from "react"
+import { Component, React, useState, useEffect } from "react"
 import { createContext } from "react";
 
 
@@ -7,9 +7,14 @@ export const GlobalContext = createContext({})
 
 export const GlobalContextProvider = ({ children }) => {
 
+  const [authuser, setauthuser] = useState(null);
+  const [projectindex, setprojectindex] = useState(null);
+
+ 
+
   const [openstylebar, setopenstylebar] = useState(false)
-  const [widthmodename, setwidthmodename] = useState("sm")
-  const [width, setwidth] = useState("390px")
+  const [widthmodename, setwidthmodename] = useState("lg")
+  const [width, setwidth] = useState("1000px")
   const [layetelementpath, setlayerelementpath] = useState("")
 
   const [isdragging, setisdragging] = useState(false)
@@ -21,8 +26,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [draggedelementparent, setdraggedelementparent] = useState(null)
   const [quickaddcomponent, setquickaddcomponent] = useState(null)
 
-  const [authuser, setauthuser] = useState(null)
-  const [projectindex, setprojectindex] = useState(null)
+  
 
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -106,7 +110,7 @@ export const GlobalContextProvider = ({ children }) => {
         lg:
         {
           editable: false,
-          data: "container",
+          data: null,
           width: 250,
           height: 150,
           widthmode: "widthcustom",
@@ -158,7 +162,7 @@ export const GlobalContextProvider = ({ children }) => {
         md:
         {
           editable: false,
-          data: "container",
+          data: null,
           width: 250,
           height: 150,
           widthmode: "widthcustom",
@@ -210,7 +214,7 @@ export const GlobalContextProvider = ({ children }) => {
         sm:
         {
           editable: false,
-          data: "container",
+          data: null,
           width: 250,
           height: 150,
           widthmode: "widthcustom",

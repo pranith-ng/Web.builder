@@ -15,10 +15,10 @@ const Profile = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setauthuser(user)
+        sessionStorage.setItem('user', JSON.stringify(user))
         const firstletter = user?.email
         const firstletterwithcap = firstletter.charAt(0).toUpperCase()
         setuserfirstletter(firstletterwithcap)
-        console.log(user)
       }
       else {
         console.log("no user found")
@@ -31,6 +31,7 @@ const Profile = () => {
   const logout = async () => {
     try {
       await signOut(auth)
+      sessionStorage.clear()
     }
     catch (error) {
       console.error(error)

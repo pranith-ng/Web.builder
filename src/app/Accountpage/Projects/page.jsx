@@ -21,7 +21,7 @@ function Projects() {
         lg:
         {
           editable: false,
-          data: "",
+          data: null,
           width: 250,
           height: 150,
           widthmode: "widthcustom",
@@ -73,7 +73,7 @@ function Projects() {
         md:
         {
           editable: false,
-          data: "",
+          data: null,
           width: 250,
           height: 150,
           widthmode: "widthcustom",
@@ -125,7 +125,7 @@ function Projects() {
         sm:
         {
           editable: false,
-          data: "",
+          data: null,
           width: 250,
           height: 150,
           widthmode: "widthcustom",
@@ -236,8 +236,7 @@ function Projects() {
         const dataref = doc(db, "website", authuser.uid, "projects", "mainprojects");
         const data = await getDoc(dataref);
 
-        // Log the data structure to verify
-        console.log(data.data());
+        
 
         // Assume `data.data()` contains a key holding the project list, e.g., `projects`
         const projects = data.data()?.data; // Safely access `data` and fallback to an empty array
@@ -285,17 +284,15 @@ function Projects() {
 
     try {
       setprojectindex(index)
+      sessionStorage.setItem("sessionprojectindex", index)
       const dataref = doc(db, "website", authuser.uid, "projects", "mainprojects");
       const data = await getDoc(dataref);
 
-      console.log(data.data());
       const projects = data.data()?.data[index];
       const webdata = projects.webdata
       setdata(webdata)
       router.push('/')
-      console.log(webdata)
-      // console.log(index)
-      // console.log(projects)
+      
     }
     catch (err) {
       console.error(err)

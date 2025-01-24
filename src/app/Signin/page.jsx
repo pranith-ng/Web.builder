@@ -20,10 +20,11 @@ const Page = () => {
 
  const signin = async() => {
   try{
+    
     if(username !== "" & username.includes("@")){
      const usercredentials =  await signInWithEmailAndPassword(auth, username, password)
      const user = usercredentials.user
-     console.log(username, password)
+     sessionStorage.clear()
      if(user) {
       setusername("")
       setpassword("")

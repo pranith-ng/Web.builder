@@ -1,13 +1,16 @@
 'use client'
-import { React, useContext, useState } from 'react'
+import { React, useContext, useState, useEffect } from 'react'
 import { RiComputerLine } from "react-icons/ri";
 import { FaTabletAlt, FaMobileAlt } from "react-icons/fa";
 import { GlobalContext } from '@/Context';
 import Recursive from '@/components/Recursive';
+import { doc, getDoc, setDoc } from "firebase/firestore"
+import { db } from "@/firebase/firebase"
 
 const page = () => {
 
     const { data, setdata, authuser, widthmodename, setwidthmodename } = useContext(GlobalContext)
+    const { projectindex, setauthuser, setprojectindex } = useContext(GlobalContext)
 
     const [width, setwidth] = useState()
 
@@ -28,6 +31,39 @@ const page = () => {
             value: "390px",
         },
     ]
+
+
+        useEffect(() => {
+           const saveduser = sessionStorage.getItem('user');
+           if (saveduser) {
+             setauthuser(JSON.parse(saveduser));
+           }
+       
+           const savedprojectindex = sessionStorage.getItem('sessionprojectindex');
+           if (savedprojectindex) {
+             setprojectindex(savedprojectindex);
+           }
+         }, []);
+    
+    
+    useEffect(() => {
+      async function getprojectdata() {
+        
+        if(authuser && projectindex){
+          try{
+            const dataref = doc(db, "website", authuser.uid, "projects", "mainprojects");
+            const data = await getDoc(dataref);
+            const projects = data.data()?.data[projectindex];
+            const webdata = projects?.webdata
+            setdata(webdata)
+          }
+          catch(err){
+            console.log(err)
+          }
+        }
+        }
+        getprojectdata()
+    }, [authuser, projectindex])
 
     return (
         <>

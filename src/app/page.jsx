@@ -35,7 +35,7 @@ const IndexPage = () => {
   const { data, setdata } = useContext(GlobalContext)
   const { undo, setundo } = useContext(GlobalContext)
   const { redo, setredo } = useContext(GlobalContext)
-  const { projectindex } = useContext(GlobalContext)
+  const { projectindex, setprojectindex } = useContext(GlobalContext)
   const { authuser, setauthuser } = useContext(GlobalContext)
   const router = useRouter()
 
@@ -60,10 +60,9 @@ const IndexPage = () => {
         return newUndo;
       });
 
-      const projects = data.data();
+      let projects = data.data();
       if (projects?.data?.[pindex]) {
         projects.data[pindex].webdata = [webdata];
-        console.log(projects);
         await setDoc(dataref, projects);
       } else {
         console.error("Invalid project structure in Firestore!");
@@ -73,7 +72,38 @@ const IndexPage = () => {
     }
   }
 
+    useEffect(() => {
+       const saveduser = sessionStorage.getItem('user');
+       if (saveduser) {
+         setauthuser(JSON.parse(saveduser));
+       }
    
+       const savedprojectindex = sessionStorage.getItem('sessionprojectindex');
+       if (savedprojectindex) {
+         setprojectindex(savedprojectindex);
+       }
+     }, []);
+
+
+useEffect(() => {
+  async function getprojectdata() {
+    
+    if(authuser && projectindex){
+      try{
+        const dataref = doc(db, "website", authuser.uid, "projects", "mainprojects");
+        const data = await getDoc(dataref);
+        const projects = data.data()?.data[projectindex];
+        const webdata = projects?.webdata
+        setdata(webdata)
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+    }
+    getprojectdata()
+}, [authuser, projectindex])
+
 
 
   useEffect(() => {
@@ -100,8 +130,6 @@ const IndexPage = () => {
         realparentpath.splice(childindex, 0, quickaddcomponent)
       }
 
-      // console.log(realparentpath, realchildpath)
-      // setdata([undo[undo.length-1]])
       undoredo(tempdata)
       setdraggedelementparent(null)
       setdraggedelementindex(null)

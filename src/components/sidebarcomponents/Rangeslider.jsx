@@ -38,7 +38,6 @@ const Rangeslider = ({min, max , layetelementpath, cssvalue, actualvalue}) => {
         const projects = data.data();
         if (projects?.data?.[pindex]) {
           projects.data[pindex].webdata = [webdata];
-          console.log(projects);
           await setDoc(dataref, projects); 
         } else {
           console.error("Invalid project structure in Firestore!");

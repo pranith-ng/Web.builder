@@ -164,7 +164,6 @@ const Stylebar = () => {
             const projects = data.data();
             if (projects?.data?.[pindex]) {
                 projects.data[pindex].webdata = [webdata];
-                console.log(projects);
                 await setDoc(dataref, projects);
             } else {
                 console.error("Invalid project structure in Firestore!");
@@ -233,6 +232,7 @@ const Stylebar = () => {
                                                 <div
                                                     className="outline-none text-gray-800 min-w-[40px] text-center"
                                                     contentEditable={widthmode === 'widthcustom' || widthmode === ''}
+                                                    suppressContentEditableWarning={true}
                                                     onBlur={(e) => {
                                                         const newwidth = e.target.innerText;
                                                         if (newwidth !== '' && newwidth > 0 && typeof newwidth !== 'number') {
@@ -265,6 +265,7 @@ const Stylebar = () => {
                                                 <div
                                                     className="outline-none text-gray-800 min-w-[40px] text-center"
                                                     contentEditable={heightmode === 'heightcustom' || heightmode === ''}
+                                                    suppressContentEditableWarning={true}
                                                     onBlur={(e) => {
                                                         const newheight = e.target.innerText;
                                                         setheight(newheight);
@@ -375,6 +376,7 @@ const Stylebar = () => {
                                             <div
                                                 className="border-b border-gray-300 px-2 focus:border-blue-400 focus:outline-none"
                                                 contentEditable
+                                                suppressContentEditableWarning={true}
                                                 onBlur={(e) => {
                                                     const newtop = e.target.innerText.trim();
                                                     settop(newtop);
@@ -399,6 +401,7 @@ const Stylebar = () => {
                                             <div
                                                 className="border-b border-gray-300 px-2 focus:border-blue-400 focus:outline-none"
                                                 contentEditable
+                                                suppressContentEditableWarning={true}
                                                 onBlur={(e) => {
                                                     const newleft = e.target.innerText.trim();
                                                     setleft(newleft);
@@ -563,6 +566,7 @@ const Stylebar = () => {
                                         <div
                                             className="w-16 p-1"
                                             contentEditable
+                                            suppressContentEditableWarning={true}
                                             onBlur={(e) => {
                                                 const newfontsize = e.target.innerText;
                                                 setfontsize(newfontsize);
@@ -700,6 +704,7 @@ const Stylebar = () => {
                                         <div
                                             className="w-16 p-1"
                                             contentEditable
+                                            suppressContentEditableWarning={true}
                                             onBlur={(e) => {
                                                 const newlineheight = e.target.innerText;
                                                 setfontsize(newlineheight);
@@ -766,7 +771,8 @@ const Stylebar = () => {
                                                         e.target.blur();
                                                     }
                                                 }}
-                                                contentEditable={true}
+                                                contentEditable
+                                                suppressContentEditableWarning={true}
                                                 className="min-w-10 p-1"
                                             >
                                                 {opacity}
@@ -1009,7 +1015,8 @@ const Stylebar = () => {
                                                             e.target.blur();
                                                         }
                                                     }}
-                                                    contentEditable={true}
+                                                    contentEditable
+                                                    suppressContentEditableWarning={true}
                                                     className="min-w-10 p-1"
                                                 >
                                                     {borderwidth}
@@ -1037,7 +1044,8 @@ const Stylebar = () => {
                                                                 e.target.blur();
                                                             }
                                                         }}
-                                                        contentEditable={true}
+                                                        contentEditable
+                                                        suppressContentEditableWarning={true}
                                                         className="min-w-10 p-1"
                                                     >
                                                         {borderradius}
@@ -1090,6 +1098,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {marginTop}
                                                 </div>
@@ -1118,6 +1127,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {marginRight}
                                                 </div>
@@ -1146,6 +1156,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {marginBottom}
                                                 </div>
@@ -1174,6 +1185,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {marginLeft}
                                                 </div>
@@ -1220,6 +1232,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {paddingTop}
                                                 </div>
@@ -1248,6 +1261,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {paddingRight}
                                                 </div>
@@ -1276,6 +1290,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {paddingBottom}
                                                 </div>
@@ -1304,6 +1319,7 @@ const Stylebar = () => {
                                                     }}
                                                     className="min-w-10 max-w-[80px] outline-none"
                                                     contentEditable
+                                                    suppressContentEditableWarning={true}
                                                 >
                                                     {paddingLeft}
                                                 </div>

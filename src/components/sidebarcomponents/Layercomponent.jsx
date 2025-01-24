@@ -9,7 +9,6 @@ const Layercomponent = ({ data, mainpath, path }) => {
   // function handleclick(event) {
   //   const path = event.target.getAttribute('data-key');
   //   setlayerelementpath(path);
-  //   console.log("layetpath", path);
   // }
 
   function handleclick(event, index) {
@@ -21,7 +20,6 @@ const Layercomponent = ({ data, mainpath, path }) => {
     setparentpath(parentpath)
     setdrop(!drop);
     setopenstylebar(true)
-    console.log("pathname", datakey, index)
   }
 
   // function handlebutton2click() {
