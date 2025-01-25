@@ -325,7 +325,8 @@ function Projects() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.isArray(existingProjects) &&
               existingProjects.map((project, index) => (
-                <div onClick={() => handleprojectclick(index)}
+                <div key={index}
+                onClick={() => handleprojectclick(index)}
                   className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-200"
                 >
                   <h3 className="text-lg font-semibold text-gray-800">{project.name}</h3>

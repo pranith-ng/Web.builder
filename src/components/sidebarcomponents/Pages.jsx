@@ -9,7 +9,7 @@ const Pages = () => {
     <div>
         {
             data.map((item, index) => (
-               <div>
+               <div key={index}>
                 {item.name}
                </div>
             ))

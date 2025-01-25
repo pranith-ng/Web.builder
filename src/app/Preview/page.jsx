@@ -7,7 +7,7 @@ import Recursive from '@/components/Recursive';
 import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "@/firebase/firebase"
 
-const page = () => {
+const Page = () => {
 
     const { data, setdata, authuser, widthmodename, setwidthmodename } = useContext(GlobalContext)
     const { projectindex, setauthuser, setprojectindex } = useContext(GlobalContext)
@@ -123,4 +123,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
