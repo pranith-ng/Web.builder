@@ -7,7 +7,7 @@ const Gallery = () => {
     const { authuser } = useContext(GlobalContext)
     const { projectindex, setprojectindex } = useContext(GlobalContext)
     const [files, setFiles] = useState(null);
-    const {imageUrl, setImageUrl} = useContext(GlobalContext);
+    const { imageUrl, setImageUrl } = useContext(GlobalContext);
 
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const Gallery = () => {
         }
 
         fetchimages()
-    })
+    }, [])
 
     const handleFileChange = async (e) => {
         const selectedFile = e.target.files[0];
@@ -58,21 +58,34 @@ const Gallery = () => {
 
     return (
         <div>
-            <input type="file" onChange={handleFileChange} />
-            <div className='flex flex-col gap-2'>
-                {imageUrl && imageUrl.map((url, index) => (
-                    <>
-                        <div>
-                            <img
-                                key={index}
-                                src={url}
-                                alt={`Image ${index}`}
-                                style={{ width: '200px', margin: '10px' }}
-                            />
-                        </div>
-                    </>
-                ))}
+            {authuser !== null ? 
+            (
+               <>
+                <input type="file" onChange={handleFileChange} />
+                <div className='flex flex-col gap-2'>
+                    {imageUrl && imageUrl.map((url, index) => (
+                        <>
+                            <div>
+                                <img
+                                    key={index}
+                                    src={url}
+                                    alt={`Image ${index}`}
+                                    style={{ width: '200px', margin: '10px' }}
+                                />
+                            </div>
+                        </>
+                    ))}
+                </div>
+               </>
+            )
+        :(
+           <>
+            <div>
+                you have not logged in
             </div>
+           </>
+        )
+    }
         </div>
     );
 };
